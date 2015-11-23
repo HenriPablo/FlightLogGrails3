@@ -6,9 +6,9 @@ buildscript {
     repositories {
         mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
-        flatDir {
-            dirs '/home/tomekpilot/work/web/FlightLogGrails3/grails-app/lib'
-        }
+        //flatDir {
+            //dirs '/home/tomekpilot/work/web/FlightLogGrails3/grails-app/lib'
+        //}
     }
 
     dependencies {        

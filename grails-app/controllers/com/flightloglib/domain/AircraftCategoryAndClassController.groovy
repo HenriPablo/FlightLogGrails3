@@ -17,12 +17,20 @@ class AircraftCategoryAndClassController {
 
     def create() {
        // [aircraftCategoryAndClassInstance: new AircraftCategoryAndClass(params)]
+        //
+        respond new AircraftCategoryAndClass()
     }
 
-    def save() {
+    def save ( ) {
+        params.name.each{i->
+            System.out.println(i);
+        }
+        ['create', 'controller', 'format','action'].each { params.remove it }
+
+        //params.exclude['create','Create ']
         def aircraftCategoryAndClassInstance = new AircraftCategoryAndClass(params)
         if (!aircraftCategoryAndClassInstance.save(flush: true)) {
-            //render view: "create", model: [aircraftCategoryAndClassInstance: aircraftCategoryAndClassInstance]
+            render view: "create", model: [aircraftCategoryAndClassInstance: aircraftCategoryAndClassInstance]
             return
         }
 
@@ -71,7 +79,8 @@ class AircraftCategoryAndClassController {
             }
         }
 
-        aircraftCategoryAndClassInstance.properties = params
+        aircraftCategoryAndClassInstance.aircraftClass = params.aircraftClass
+        aircraftCategoryAndClassInstance.aircraftCategory = params.aircraftCategory
 
         if (!aircraftCategoryAndClassInstance.save(flush: true)) {
             render(view: "edit", model: [aircraftCategoryAndClassInstance: aircraftCategoryAndClassInstance])

@@ -1,10 +1,8 @@
 package flightloggrails3
 
-class Bunny {
+class Tester {
 
-    String name;
+    String testerName;
     static constraints = {
     }
-
-
 }

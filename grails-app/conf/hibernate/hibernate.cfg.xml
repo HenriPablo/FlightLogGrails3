@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <mapping package="com.flightloglib.domain" />
+
+        <mapping class="com.flightloglib.domain.AircraftMakeAndModel" />
+
+        <mapping class="com.flightloglib.domain.AircraftCategoryAndClass" />
+
+        <mapping class="com.flightloglib.domain.Airport" />
+        <mapping class="com.flightloglib.domain.Flight" />
+
+        <mapping class="com.flightloglib.domain.CrewMember" />
+        <mapping class="com.flightloglib.domain.Pilot" />
+        <mapping class="com.flightloglib.domain.CrewMemberRole" />
+
+        <mapping class="com.flightloglib.domain.TimeSummary" />
+
+</session-factory>
+</hibernate-configuration>
+
+

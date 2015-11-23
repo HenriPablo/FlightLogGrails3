@@ -4,91 +4,91 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class BunnyController {
+class TesterController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Bunny.list(params), model:[bunnyCount: Bunny.count()]
+        respond Tester.list(params), model:[testerCount: Tester.count()]
     }
 
-    def show(Bunny bunny) {
-        respond bunny
+    def show(Tester tester) {
+        respond tester
     }
 
     def create() {
-        respond new Bunny(params)
+        respond new Tester(params)
     }
 
     @Transactional
-    def save(Bunny bunny) {
-        if (bunny == null) {
+    def save(Tester tester) {
+        if (tester == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        if (bunny.hasErrors()) {
+        if (tester.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond bunny.errors, view:'create'
+            respond tester.errors, view:'create'
             return
         }
 
-        bunny.save flush:true
+        tester.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'bunny.label', default: 'Bunny'), bunny.id])
-                redirect bunny
+                flash.message = message(code: 'default.created.message', args: [message(code: 'tester.label', default: 'Tester'), tester.id])
+                redirect tester
             }
-            '*' { respond bunny, [status: CREATED] }
+            '*' { respond tester, [status: CREATED] }
         }
     }
 
-    def edit(Bunny bunny) {
-        respond bunny
+    def edit(Tester tester) {
+        respond tester
     }
 
     @Transactional
-    def update(Bunny bunny) {
-        if (bunny == null) {
+    def update(Tester tester) {
+        if (tester == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        if (bunny.hasErrors()) {
+        if (tester.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond bunny.errors, view:'edit'
+            respond tester.errors, view:'edit'
             return
         }
 
-        bunny.save flush:true
+        tester.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'bunny.label', default: 'Bunny'), bunny.id])
-                redirect bunny
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'tester.label', default: 'Tester'), tester.id])
+                redirect tester
             }
-            '*'{ respond bunny, [status: OK] }
+            '*'{ respond tester, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(Bunny bunny) {
+    def delete(Tester tester) {
 
-        if (bunny == null) {
+        if (tester == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        bunny.delete flush:true
+        tester.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'bunny.label', default: 'Bunny'), bunny.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'tester.label', default: 'Tester'), tester.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -98,7 +98,7 @@ class BunnyController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'bunny.label', default: 'Bunny'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'tester.label', default: 'Tester'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
